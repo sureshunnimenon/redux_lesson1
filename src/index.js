@@ -2,11 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// at topmost component, create the store. it could be in separate file also rather than index/ could be in app also
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+import postReducer from './reducer/postReducer';
+const storePost = createStore(postReducer);
+
+// above we use storePost (createStore function) and it uses 'postReducer' a reducer function
+// we also use Provider component fom react-redux
+
+ReactDOM.render(
+  <Provider store={storePost}>
+    <App />{' '}
+  </Provider>,
+  document.getElementById('root')
+);
