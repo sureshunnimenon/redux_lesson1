@@ -9,8 +9,10 @@ class PostForm extends Component {
     const blogdata = {
       id: new Date(),
       title,
-      message
+      message,
+      editing: false
     };
+
     console.log(blogdata);
     this.props.dispatch({
       type: 'ADD_POST',
@@ -19,11 +21,12 @@ class PostForm extends Component {
     this.getTitle.value = '';
     this.getMessage.value = '';
   };
+
   render() {
     return (
-      <div>
-        <h1> Create Post</h1>
-        <form onSubmit={this.handleSubmit}>
+      <div className='post-container'>
+        <h1 className='post_heading'> Create Post</h1>
+        <form classname='form' onSubmit={this.handleSubmit}>
           {' '}
           <input
             required
@@ -33,10 +36,10 @@ class PostForm extends Component {
           />{' '}
           <br /> <br />
           <textarea
-            cols='30'
+            cols='90'
             rows='5'
             required
-            placeholder='Enteer post'
+            placeholder='Enter post'
             ref={input => (this.getMessage = input)}
           ></textarea>{' '}
           <br />
